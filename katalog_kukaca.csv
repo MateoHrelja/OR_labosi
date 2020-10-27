@@ -1,0 +1,11 @@
+naziv,wikipediastranica,carstvo,porodica,otrovni,korisnost,veličina,parazit,aktivninoću,životnivijek
+leptir,https://en.wikipedia.org/wiki/Butterfly,Eukaryota,Rhopalocera,Ne,Velika,30,Ne,Da,12
+skakavac,https://en.wikipedia.org/wiki/Grasshopper,Eukaryota,Acridomorpha,Ne,Srednja,50,Ne,Da,12
+bubamara,https://en.wikipedia.org/wiki/Coccinellidae,Eukaryota,Coccinellidae,Da,Srednja,8,Ne,Da,24
+muha,https://en.wikipedia.org/wiki/Fly,Eukaryota,Diptera,Ne,Malena,7,Ne,Ne,1
+osa,https://en.wikipedia.org/wiki/Wasp,Eukaryota,Hymenoptera,Da,Malena,15,Ne,Ne,1
+stršljen,https://en.wikipedia.org/wiki/Hornet,Eukaryota,Vespa,Da,Malena,25,Ne,Ne,1
+komarac,https://en.wikipedia.org/wiki/Mosquito,Eukaryota,Culicidae,Ne,Malena,4,Ne,Da,1
+pčela,https://en.wikipedia.org/wiki/Bee,Eukaryota,Anthophila,Ne,Velika,15,Ne,Ne,4
+bumbar,https://en.wikipedia.org/wiki/Bumblebee,Eukaryota,Bombus,Ne,Velika,25,Ne,Ne,1
+žohar,https://en.wikipedia.org/wiki/Cockroach,Eukaryota,Blattodea,Ne,Malena,35,Ne,Da,5
