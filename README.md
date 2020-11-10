@@ -12,3 +12,15 @@ Opis: Skup otvorenih podataka o kukcima, njihovim glavnim obilježjima i atribut
 * Ključne riječi: kukci, insekti, atributi
 * Tema: kukci
 * Dan objave: 27.10.2020.
+
+## Opis atributa:
+* Naziv: naziv kukca na hrvatskom jeziku
+* Wikipedia Handle: wikiHandle za Wikipedia stranicu kukca
+* Carstvo: carstvo kojem kukac pripada
+* Porodica: porodica kojoj kukac pripada
+* Otrovni: je li kukac otrovan ili ne
+* Korisnost: koliko je kukac koristan ekosustavu u kojem obitava
+* Veličina: veličina kukca u mm
+* Parazit: je li kukac parazit ili ne
+* Aktivni noću: je li kukac aktivan noću ili ne
+* Životni vijek: životni vijek kukca u mjesecima
