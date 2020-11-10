@@ -1,0 +1,161 @@
+[{
+		"nazivkukca": "leptir",
+		"wikipedia": "Butterfly",
+		"carstvo": "Eukaryota",
+		"porodica": "Rhopalocera",
+		"otrovni": "Ne",
+		"korisnost": "Velika",
+		"veličina": 30,
+		"parazit": "Ne",
+		"aktivninoću": "Da",
+		"životnivijek": 12,
+		"imetaksonomista": [{
+			"Ime": "Maria",
+			"Prezime": "Merian"
+		}]
+	},
+	{
+		"nazivkukca": "skakavac",
+		"wikipedia": "Grasshopper",
+		"carstvo": "Eukaryota",
+		"porodica": "Acridomorpha",
+		"otrovni": "Ne",
+		"korisnost": "Srednja",
+		"veličina": 50,
+		"parazit": "Ne",
+		"aktivninoću": "Da",
+		"životnivijek": 12,
+		"imetaksonomista": [{
+			"Ime": "David",
+			"Prezime": "Attenborough"
+		}]
+	},
+	{
+		"nazivkukca": "bubamara",
+		"wikipedia": "Coccinellidae",
+		"carstvo": "Eukaryota",
+		"porodica": "Coccinellidae",
+		"otrovni": "Da",
+		"korisnost": "Srednja",
+		"veličina": 8,
+		"parazit": "Ne",
+		"aktivninoću": "Da",
+		"životnivijek": 24,
+		"imetaksonomista": [{
+			"Ime": "Pierre",
+			"Prezime": "Latreille"
+		}]
+	},
+	{
+		"nazivkukca": "muha",
+		"wikipedia": "Fly",
+		"carstvo": "Eukaryota",
+		"porodica": "Diptera",
+		"otrovni": "Ne",
+		"korisnost": "Malena",
+		"veličina": 7,
+		"parazit": "Ne",
+		"aktivninoću": "Ne",
+		"životnivijek": 1,
+		"imetaksonomista": [{
+			"Ime": "Carl",
+			"Prezime": "Linnaeus"
+		}]
+	},
+	{
+		"nazivkukca": "osa",
+		"wikipedia": "Wasp",
+		"carstvo": "Eukaryota",
+		"porodica": "Hymenoptera",
+		"otrovni": "Da",
+		"korisnost": "Malena",
+		"veličina": 15,
+		"parazit": "Ne",
+		"aktivninoću": "Ne",
+		"životnivijek": 1,
+		"imetaksonomista": [{
+			"Ime": "Carl",
+			"Prezime": "Linnaeus"
+		}]
+	},
+	{
+		"nazivkukca": "stršljen",
+		"wikipedia": "Hornet",
+		"carstvo": "Eukaryota",
+		"porodica": "Vespa",
+		"otrovni": "Da",
+		"korisnost": "Malena",
+		"veličina": 25,
+		"parazit": "Ne",
+		"aktivninoću": "Ne",
+		"životnivijek": 1,
+		"imetaksonomista": [{
+			"Ime": "Carl",
+			"Prezime": "Linnaeus"
+		}]
+	},
+	{
+		"nazivkukca": "komarac",
+		"wikipedia": "Mosquito",
+		"carstvo": "Eukaryota",
+		"porodica": "Culicidae",
+		"otrovni": "Ne",
+		"korisnost": "Malena",
+		"veličina": 4,
+		"parazit": "Ne",
+		"aktivninoću": "Da",
+		"životnivijek": 1,
+		"imetaksonomista": [{
+			"Ime": "Johann",
+			"Prezime": "Meigen"
+		}]
+	},
+	{
+		"nazivkukca": "pčela",
+		"wikipedia": "Bee",
+		"carstvo": "Eukaryota",
+		"porodica": "Anthophila",
+		"otrovni": "Ne",
+		"korisnost": "Velika",
+		"veličina": 15,
+		"parazit": "Ne",
+		"aktivninoću": "Ne",
+		"životnivijek": 4,
+		"imetaksonomista": [{
+			"Ime": "Pierre",
+			"Prezime": "Latreille"
+		}]
+	},
+	{
+		"nazivkukca": "bumbar",
+		"wikipedia": "Bumblebee",
+		"carstvo": "Eukaryota",
+		"porodica": "Bombus",
+		"otrovni": "Ne",
+		"korisnost": "Velika",
+		"veličina": 25,
+		"parazit": "Ne",
+		"aktivninoću": "Ne",
+		"životnivijek": 1,
+		"imetaksonomista": [{
+			"Ime": "Pierre",
+			"Prezime": "Latreille"
+		}]
+	},
+	{
+		"nazivkukca": "žohar",
+		"wikipedia": "Cockroach",
+		"carstvo": "Eukaryota",
+		"porodica": "Blattodea",
+		"otrovni": "Ne",
+		"korisnost": "Malena",
+		"veličina": 35,
+		"parazit": "Ne",
+		"aktivninoću": "Da",
+		"životnivijek": 5,
+		"imetaksonomista": [{
+			"Ime": "Carl",
+			"Prezime": "Brunner"
+		}]
+	}
+]
