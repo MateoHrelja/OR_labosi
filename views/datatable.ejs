@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+    <head>
+        <title>Kukci</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Kukci, 2. labos iz OR, FER">
+        <meta name="author" content="Mateo Hrelja">
+        <meta name="keywords" content="insects, kukci, csv, json, open-data">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type = "text/css" href="../styles/main.css">
+    </head>
+
+    <body>
+        <main>
+            
+            <h1>Polje za pretragu</h1>
+            
+            
+            <input type="text" name="value" placeholder="Unesite vrijednost" class="input_holder" id="myInput"  >
+            <p class="p">Po ovoj vrijednosti će se pretraživati podaci.</p>
+            
+            
+            
+            <select name="search" id="search_id" class="selector">
+                <option value="wildcard">Sva polja (wildcard)</option>
+                <option value="nazivkukca">Naziv kukca</option>
+                <option value="wikipedia">Wikipedia</option>
+                <option value="carstvo">Carstvo</option>
+                <option value="porodica">Porodica</option>
+                <option value="otrovni">Otrovni</option>
+                <option value="korisnost">Korisnost</option>
+                <option value="velicina">Veličina</option>
+                <option value="parazit">Parazit</option>
+                <option value="aktivninocu">Aktivnost Noću</option>
+                <option value="zivotnivijek">Životni Vijek</option>
+                <option value="imetaksonomista">Ime Taksonomista</option>
+            </select>
+            
+            <br><br><br>
+
+            <div>
+                <input type="button" id="clickme" value="Prikaži" class="button" onclick="myFunction()"/>
+                <a href="../formats/kukci.csv" download = "kukci.csv"><input type="button" class="button" value="CSV"></a>
+                <a href="../formats/kukci.json" download = "kukci.json"><input type="button" class="button" value="JSON"></a>
+            </div>
+            
+            <br><br>
+            
+            <table id = "myTable" class="kukci">
+                <thead>
+                    <tr class="table_head">
+                        <th>Naziv kukca</th>
+                        <th>Wikipedia</th> 
+                        <th>Carstvo</th>
+                        <th>Porodica</th>
+                        <th>Otrovni</th> 
+                        <th>Korisnost</th>
+                        <th>Veličina</th>
+                        <th>Parazit</th> 
+                        <th>Aktivni Noću</th>
+                        <th>Životni vijek</th>
+                        <th>Ime taksonomista</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let kukac of kukci2) { %>
+                        
+                        <tr>
+                            <th class="nazivkukca"><%=kukac.nazivkukca%></th>
+                            <th class="wikipedia"><%=kukac.wikipedia%></th> 
+                            <th class="carstvo"><%=kukac.carstvo%></th>
+                            <th class="porodica"><%=kukac.porodica%></th>
+                            <th class="otrovni"><%=kukac.otrovni%></th> 
+                            <th class="korisnost"><%=kukac.korisnost%></th>
+                            <th class="velicina"><%=kukac.veličina%></th>
+                            <th class="parazit"><%=kukac.parazit%></th>
+                            <th class="aktivninocu"><%=kukac.aktivninoću%></th>
+                            <th class="zivotnivijek"><%=kukac.životnivijek%></th> 
+                            <th class="imetaksonomista"><%=kukac.imetaksonomista%></th>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            
+            
+        </main>
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, th, i, txtValue, valueSelector;
+                var wildcardSelector = ["nazivkukca", "wikipedia", "carstvo", "porodica", "otrovni", "korisnost", "velicina", "parazit", "aktivninocu", "zivotni vijek", "imetaksonomista"];
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                valueSelector = document.getElementById("search_id").value;
+                var hidden;
+                if(valueSelector == "wildcard"){
+                        for (i = 1; i < tr.length; i++) {
+                            for(j = 0; j < 11; j++){
+                                th = tr[i].getElementsByTagName("th")[j];
+                                tr[i].style.display = "none";
+                                  
+                            } 
+                            for(j = 0; j < 11; j++){
+                                th = tr[i].getElementsByTagName("th")[j];
+                                
+                                if (th) {
+                                    txtValue = th.textContent || th.innerText;
+                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                    } 
+                                    
+                                }  
+                            }      
+                        }
+                    
+                }
+                else{
+                        for (i = 0; i < tr.length; i++) {
+                            th = tr[i].getElementsByClassName(valueSelector)[0];
+                            if (th) {
+                                txtValue = th.textContent || th.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }       
+                    }
+                }
+                
+                
+            }
+        </script>
+    </body>
+</html>

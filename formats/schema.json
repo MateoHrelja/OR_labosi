@@ -1,0 +1,258 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "array",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": [],
+    "examples": [
+        [
+            {
+                "nazivkukca": "leptir",
+                "wikipedia": "Butterfly",
+                "carstvo": "Eukaryota",
+                "porodica": "Rhopalocera",
+                "otrovni": "Ne",
+                "korisnost": "Velika",
+                "veličina": 30,
+                "parazit": "Ne",
+                "aktivninoću": "Da",
+                "životnivijek": 12,
+                "imetaksonomista": [
+                    {
+                        "Ime": "Maria",
+                        "Prezime": "Merian"
+                    }
+                ]
+            },
+            {
+                "nazivkukca": "skakavac",
+                "wikipedia": "Grasshopper",
+                "carstvo": "Eukaryota",
+                "porodica": "Acridomorpha",
+                "otrovni": "Ne",
+                "korisnost": "Srednja",
+                "veličina": 50,
+                "parazit": "Ne",
+                "aktivninoću": "Da",
+                "životnivijek": 12,
+                "imetaksonomista": [
+                    {
+                        "Ime": "David",
+                        "Prezime": "Attenborough"
+                    }
+                ]
+            }
+        ]
+    ],
+    "additionalItems": true,
+    "items": {
+        "$id": "#/items",
+        "anyOf": [
+            {
+                "$id": "#/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "nazivkukca": "leptir",
+                        "wikipedia": "Butterfly",
+                        "carstvo": "Eukaryota",
+                        "porodica": "Rhopalocera",
+                        "otrovni": "Ne",
+                        "korisnost": "Velika",
+                        "veličina": 30,
+                        "parazit": "Ne",
+                        "aktivninoću": "Da",
+                        "životnivijek": 12,
+                        "imetaksonomista": [
+                            {
+                                "Ime": "Maria",
+                                "Prezime": "Merian"
+                            }
+                        ]
+                    }
+                ],
+                "required": [
+                    "nazivkukca",
+                    "wikipedia",
+                    "carstvo",
+                    "porodica",
+                    "otrovni",
+                    "korisnost",
+                    "veličina",
+                    "parazit",
+                    "aktivninoću",
+                    "životnivijek",
+                    "imetaksonomista"
+                ],
+                "properties": {
+                    "nazivkukca": {
+                        "$id": "#/items/anyOf/0/properties/nazivkukca",
+                        "type": "string",
+                        "title": "The nazivkukca schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "leptir"
+                        ]
+                    },
+                    "wikipedia": {
+                        "$id": "#/items/anyOf/0/properties/wikipedia",
+                        "type": "string",
+                        "title": "The wikipedia schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Butterfly"
+                        ]
+                    },
+                    "carstvo": {
+                        "$id": "#/items/anyOf/0/properties/carstvo",
+                        "type": "string",
+                        "title": "The carstvo schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Eukaryota"
+                        ]
+                    },
+                    "porodica": {
+                        "$id": "#/items/anyOf/0/properties/porodica",
+                        "type": "string",
+                        "title": "The porodica schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Rhopalocera"
+                        ]
+                    },
+                    "otrovni": {
+                        "$id": "#/items/anyOf/0/properties/otrovni",
+                        "type": "string",
+                        "title": "The otrovni schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Ne"
+                        ]
+                    },
+                    "korisnost": {
+                        "$id": "#/items/anyOf/0/properties/korisnost",
+                        "type": "string",
+                        "title": "The korisnost schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Velika"
+                        ]
+                    },
+                    "veličina": {
+                        "$id": "#/items/anyOf/0/properties/veli%C4%8Dina",
+                        "type": "integer",
+                        "title": "The veličina schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            30
+                        ]
+                    },
+                    "parazit": {
+                        "$id": "#/items/anyOf/0/properties/parazit",
+                        "type": "string",
+                        "title": "The parazit schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Ne"
+                        ]
+                    },
+                    "aktivninoću": {
+                        "$id": "#/items/anyOf/0/properties/aktivnino%C4%87u",
+                        "type": "string",
+                        "title": "The aktivninoću schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Da"
+                        ]
+                    },
+                    "životnivijek": {
+                        "$id": "#/items/anyOf/0/properties/%C5%BEivotnivijek",
+                        "type": "integer",
+                        "title": "The životnivijek schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            12
+                        ]
+                    },
+                    "imetaksonomista": {
+                        "$id": "#/items/anyOf/0/properties/imetaksonomista",
+                        "type": "array",
+                        "title": "The imetaksonomista schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": [],
+                        "examples": [
+                            [
+                                {
+                                    "Ime": "Maria",
+                                    "Prezime": "Merian"
+                                }
+                            ]
+                        ],
+                        "additionalItems": true,
+                        "items": {
+                            "$id": "#/items/anyOf/0/properties/imetaksonomista/items",
+                            "anyOf": [
+                                {
+                                    "$id": "#/items/anyOf/0/properties/imetaksonomista/items/anyOf/0",
+                                    "type": "object",
+                                    "title": "The first anyOf schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": {},
+                                    "examples": [
+                                        {
+                                            "Ime": "Maria",
+                                            "Prezime": "Merian"
+                                        }
+                                    ],
+                                    "required": [
+                                        "Ime",
+                                        "Prezime"
+                                    ],
+                                    "properties": {
+                                        "Ime": {
+                                            "$id": "#/items/anyOf/0/properties/imetaksonomista/items/anyOf/0/properties/Ime",
+                                            "type": "string",
+                                            "title": "The Ime schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "Maria"
+                                            ]
+                                        },
+                                        "Prezime": {
+                                            "$id": "#/items/anyOf/0/properties/imetaksonomista/items/anyOf/0/properties/Prezime",
+                                            "type": "string",
+                                            "title": "The Prezime schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "Merian"
+                                            ]
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                }
+                            ]
+                        }
+                    }
+                },
+                "additionalProperties": true
+            }
+        ]
+    }
+}
