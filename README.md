@@ -1,5 +1,5 @@
 # OR_labosi
-Opis: Skup otvorenih podataka o kukcima, njihovim glavnim obilježjima i atributima u sklopu 1. laboratorijske vježbe za predmet Otvoreno Računarstvo na FER-u.
+Opis: Skup otvorenih podataka o kukcima, njihovim glavnim obilježjima i atributima u sklopu laboratorijskih vježbi za predmet Otvoreno Računarstvo na FER-u.
 
 ## Metapodaci:
 * Naziv: Skup otvorenih kataloških podataka o kukcima 
