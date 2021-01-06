@@ -1,0 +1,308 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "info": "Backend API za podatke o kukcima",
+    "version": "3.0"
+  },
+  "paths": {
+    "/api/bugs/": {
+      "get": {
+        "summary": "Get all resources from the collection",
+        "description": "Returns a list of all the objects from the collection",
+        "produces": [
+          "application/json"
+],
+        "parameters": [
+          "null"
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch successful",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/api/bugs/{bugsId}": {
+      "get": {
+        "summary": "Get resource from the collection by ID",
+        "description": "Returns a single collection resource",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch successful",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/api/bugs": {
+      "get": {
+        "summary": "Get resource from the collection by family parameter",
+        "description": "Returns a list of resources from the collection based on family parameter",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "family",
+            "in": "request-param",
+            "description": "family attribute of the resource",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch successful",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/api/bugs/activeatnight": {
+      "get": {
+        "summary": "Get all resources from the collection who satisfy the activeatnight parameter",
+        "description": "Returns a list of all the objects from the collection which satisfy the activeatnight parameter",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          "null"
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch successful",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/api/bugs/venomous": {
+      "get": {
+        "summary": "Get all resources from the collection who satisfy the venomous parameter",
+        "description": "Returns a list of all the objects from the collection which satisfy the venomous parameter",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          "null"
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch successful",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    },
+    "/api/bugs/delete/{bugsId}": {
+      "get": {
+        "summary": "Deletes a resource from the collection with ID",
+        "description": "Removes an entry in the database based on ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "400": {
+            "description": "Invalid parameter"
+          }
+        }
+      }
+    },
+    "/api/bugs/update/{bugsId}": {
+      "get": {
+        "summary": "Change a collection resource based on ID and lifespan parameter",
+        "description": "Updates an entry in the database based on ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "lifespan",
+            "in": "request-param",
+            "description": "lifespan parameter of the resource",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "400": {
+            "description": "Invalid parameter"
+          }
+        }
+      }
+    },
+    "/api/bugs/add": {
+      "get": {
+        "summary": "Adds a resource to the collection",
+        "description": "Adds an entry to the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "request-body",
+            "description": "name of the new resource",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "wikiHandle",
+            "in": "request-body",
+            "description": "wikiHandle of the new resource",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "kingdom",
+            "in": "request-body",
+            "description": "kingdom of the new resource",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "family",
+            "in": "request-body",
+            "description": "family of the new resource",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "venomous",
+            "in": "request-body",
+            "description": "determines whether the new resource is venomous or not",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "usefulness",
+            "in": "request-body",
+            "description": "usefulness of the new resource, in 3 enumerations",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "size",
+            "in": "request-body",
+            "description": "vertical size of the new resource, in mm",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "parasite",
+            "in": "request-body",
+            "description": "determines whether the new resource is a parasite or not",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "activeatnight",
+            "in": "request-body",
+            "description": "determines whether the new resource is active at night or not",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "lifespan",
+            "in": "request-body",
+            "description": "lifespan of the new resource, in months",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "400": {
+            "description": "Invalid parameter"
+          }
+        }
+      }
+    }
+  }
+}
