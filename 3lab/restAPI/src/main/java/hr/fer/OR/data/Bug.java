@@ -1,11 +1,13 @@
 package hr.fer.OR.data;
 
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Bug {
+public class Bug extends RepresentationModel<Bug> {
 
     private final int bugId;
 
