@@ -2,6 +2,7 @@ package hr.fer.OR.database;
 
 import hr.fer.OR.data.AddBugRequestBody;
 import hr.fer.OR.data.Bug;
+import hr.fer.OR.data.BugResponseStatus;
 import hr.fer.OR.data.Subspecies;
 import org.springframework.lang.NonNull;
 
@@ -24,7 +25,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
     }
 
     @Override
-    public String addNewBug(@NonNull AddBugRequestBody addBugRequestBody) {
+    public BugResponseStatus addNewBug(@NonNull AddBugRequestBody addBugRequestBody) {
         String query = "BEGIN TRANSACTION;\n"
                 + "INSERT INTO kukci_final VALUES((SELECT MAX(bug_id) FROM kukci_final + 1, '"
                 + addBugRequestBody.getName() + "', "
@@ -45,15 +46,15 @@ public class DatabaseManagerImpl implements DatabaseManager {
         query += "COMMIT TRANSACTION;";
         try (Statement stmt = databaseConnection.createStatement()) {
             stmt.executeUpdate(query);
-            return "Success";
+            return new BugResponseStatus("Success");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "Failure";
+        return new BugResponseStatus("Failure");
     }
 
     @Override
-    public String changeBugLifespan(int bugId, @NonNull String newBugLifespan) {
+    public BugResponseStatus changeBugLifespan(int bugId, @NonNull String newBugLifespan) {
         String query = "BEGIN TRANSACTION;\n"
                 + "UPDATE kukci_final SET lifespan_m = '"
                 + newBugLifespan + "'"
@@ -61,25 +62,25 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 + "COMMIT TRANSACTION;";
         try (Statement stmt = databaseConnection.createStatement()) {
             stmt.executeUpdate(query);
-            return "Success";
+            return new BugResponseStatus("Success");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "Failure";
+        return new BugResponseStatus("Failure");
     }
 
     @Override
-    public String removeBug(int bugId) {
+    public BugResponseStatus removeBug(int bugId) {
         String query = "BEGIN TRANSACTION;\n" + "DELETE FROM kukci_final WHERE bug_id = "
                 + bugId + ";" + "COMMIT TRANSACTION;";
 
         try (Statement stmt = databaseConnection.createStatement()) {
             stmt.executeUpdate(query);
-            return "Success";
+            return new BugResponseStatus("Success");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "Failure";
+        return new BugResponseStatus("Failure");
     }
 
     @Override

@@ -2,6 +2,7 @@ package hr.fer.OR.database;
 
 import hr.fer.OR.data.AddBugRequestBody;
 import hr.fer.OR.data.Bug;
+import hr.fer.OR.data.BugResponseStatus;
 import hr.fer.OR.data.Subspecies;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -11,13 +12,13 @@ import java.util.List;
 public interface DatabaseManager {
 
     @Nullable
-    String addNewBug(@NonNull AddBugRequestBody addBugRequestBody);
+    BugResponseStatus addNewBug(@NonNull AddBugRequestBody addBugRequestBody);
 
     @Nullable
-    String changeBugLifespan(int bugId, @NonNull String newLifespan);
+    BugResponseStatus changeBugLifespan(int bugId, @NonNull String newLifespan);
 
     @Nullable
-    String removeBug(int bugId);
+    BugResponseStatus removeBug(int bugId);
 
     @Nullable
     List<Subspecies> getSubspecies (int bugId);
