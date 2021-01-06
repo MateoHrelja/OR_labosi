@@ -147,7 +147,7 @@ public class Controller {
         bugResponseStatus.add(linkTo(methodOn(Controller.class).addBug(addBugRequestBody)).withSelfRel());
         bugResponseStatus.add(linkTo(methodOn(Controller.class).getBugs()).withRel("rel"));
         if (bugResponseStatus.getMessage().equals("Success")) {
-            return new ResponseEntity<>(bugResponseStatus, HttpStatus.OK);
+            return new ResponseEntity<>(bugResponseStatus, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(bugResponseStatus, HttpStatus.BAD_REQUEST);
     }
