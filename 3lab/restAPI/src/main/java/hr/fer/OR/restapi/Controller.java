@@ -1,9 +1,6 @@
 package hr.fer.OR.restapi;
 
-import hr.fer.OR.data.AddBugRequestBody;
-import hr.fer.OR.data.Bug;
-import hr.fer.OR.data.BugResponse;
-import hr.fer.OR.data.BugResponseStatus;
+import hr.fer.OR.data.*;
 import hr.fer.OR.database.DatabaseManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -121,14 +118,13 @@ public class Controller {
     }
 
     @PutMapping("/api/bugs/update/{bugId}")
-    public ResponseEntity<BugResponseStatus> changeLifespan(
-        @PathVariable int bugId,
-        @RequestParam String lifespan
+    public ResponseEntity<BugResponseStatus> editBug(EditBugRequestBody editBugRequestBody,
+                                                     @PathVariable int bugId
     ) {
 
-        BugResponseStatus bugResponseStatus = databaseManager.changeBugLifespan(bugId, lifespan);
+        BugResponseStatus bugResponseStatus = databaseManager.editExistingBug(bugId, editBugRequestBody);
 
-        bugResponseStatus.add(linkTo(methodOn(Controller.class).changeLifespan(bugId, lifespan)).withSelfRel());
+        bugResponseStatus.add(linkTo(methodOn(Controller.class).editBug(editBugRequestBody, bugId)).withSelfRel());
         bugResponseStatus.add(linkTo(methodOn(Controller.class).getBugId(bugId)).withRel("rel"));
         if (bugResponseStatus.getMessage().equals("Success")) {
             return new ResponseEntity<>(bugResponseStatus, HttpStatus.OK);
