@@ -2,16 +2,20 @@ package hr.fer.OR.restapi;
 
 import hr.fer.OR.data.AddBugRequestBody;
 import hr.fer.OR.data.Bug;
+import hr.fer.OR.data.BugResponse;
 import hr.fer.OR.data.BugResponseStatus;
 import hr.fer.OR.database.DatabaseManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import java.util.List;
 import java.util.Objects;
+
+import org.fastily.jwiki.core.*;
+import org.fastily.jwiki.dwrap.*;
 
 @RestController
 public class Controller {
@@ -21,15 +25,15 @@ public class Controller {
     public Controller(DatabaseManager databaseManager) {this.databaseManager = databaseManager;}
 
     @GetMapping("/api/bugs/")
-    public ResponseEntity<List<Bug>> getBugs() {
-        var objects = databaseManager.getAllBugs();
+    public ResponseEntity<BugResponse> getBugs() {
+        BugResponse bugResponse = databaseManager.getAllBugs();
 
-        if (!objects.isEmpty()) {
-            for (Bug bug : objects) {
+        if(bugResponse.getStatus() == "OK") {
+            for (Bug bug : bugResponse.getBugs()) {
                 bug.add(linkTo(methodOn(Controller.class).getBugs()).withSelfRel());
                 bug.add(linkTo(methodOn(Controller.class).getBugId(bug.getBugId())).withRel("rel"));
             }
-            return new ResponseEntity<>(Objects.requireNonNullElseGet(objects, List::of), HttpStatus.OK);
+            return new ResponseEntity<>(bugResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
@@ -37,35 +41,32 @@ public class Controller {
     }
 
     @GetMapping("/api/bugs/{bugId}")
-    public ResponseEntity<List<Bug>> getBugId(@PathVariable int bugId) {
-        var objects = databaseManager.getBugById(bugId);
+    public ResponseEntity<BugResponse> getBugId(@PathVariable int bugId) {
+        BugResponse bugResponse = databaseManager.getBugById(bugId);
 
-        if (!objects.isEmpty()) {
-
-            for (Bug bug : objects) {
-                bug.add(linkTo(methodOn(Controller.class).getBugId(bugId)).withSelfRel());
-                bug.add(linkTo(methodOn(Controller.class).deleteBug(bugId)).withRel("rel"));
+        if(bugResponse.getStatus() == "OK") {
+            for (Bug bug : bugResponse.getBugs()) {
+                bug.add(linkTo(methodOn(Controller.class).getBugs()).withSelfRel());
+                bug.add(linkTo(methodOn(Controller.class).getBugId(bug.getBugId())).withRel("rel"));
             }
-
-            return new ResponseEntity<>(Objects.requireNonNullElseGet(objects, List::of), HttpStatus.OK);
+            return new ResponseEntity<>(bugResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
     }
 
     @GetMapping("/api/bugs")
-    public ResponseEntity<List<Bug>> getBugFamily(
+    public ResponseEntity<BugResponse> getBugFamily(
         @RequestParam("family") String family
     ) {
-        var objects = databaseManager.getBugByFamily(family);
+        BugResponse bugResponse = databaseManager.getBugByFamily(family);
 
-        if (!objects.isEmpty()) {
-
-            for (Bug bug : objects) {
-                bug.add(linkTo(methodOn(Controller.class).getBugFamily(family)).withSelfRel());
+        if(bugResponse.getStatus() == "OK") {
+            for (Bug bug : bugResponse.getBugs()) {
+                bug.add(linkTo(methodOn(Controller.class).getBugs()).withSelfRel());
+                bug.add(linkTo(methodOn(Controller.class).getBugId(bug.getBugId())).withRel("rel"));
             }
-
-            return new ResponseEntity<>(Objects.requireNonNullElseGet(objects, List::of), HttpStatus.OK);
+            return new ResponseEntity<>(bugResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
@@ -74,18 +75,15 @@ public class Controller {
 
 
     @GetMapping("/api/bugs/activeatnight")
-    public ResponseEntity<List<Bug>> getBugNight() {
-        var objects = databaseManager.getBugByActiveAtNight();
+    public ResponseEntity<BugResponse> getBugNight() {
+        BugResponse bugResponse = databaseManager.getBugByActiveAtNight();
 
-        if (!objects.isEmpty()) {
-
-            for (Bug bug : objects) {
-                bug.add(linkTo(methodOn(Controller.class).getBugNight()).withSelfRel());
+        if(bugResponse.getStatus() == "OK") {
+            for (Bug bug : bugResponse.getBugs()) {
+                bug.add(linkTo(methodOn(Controller.class).getBugs()).withSelfRel());
                 bug.add(linkTo(methodOn(Controller.class).getBugId(bug.getBugId())).withRel("rel"));
             }
-
-            return new ResponseEntity<>(Objects.requireNonNullElseGet(objects, List::of), HttpStatus.OK);
-
+            return new ResponseEntity<>(bugResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
@@ -93,17 +91,16 @@ public class Controller {
     }
 
     @GetMapping("/api/bugs/venomous")
-    public ResponseEntity<List<Bug>> getBugVenomous() {
-        var objects = databaseManager.getBugByVenomous();
+    public ResponseEntity<BugResponse> getBugVenomous() {
 
-        if (!objects.isEmpty()) {
+        BugResponse bugResponse = databaseManager.getBugByVenomous();
 
-            for (Bug bug : objects) {
-                bug.add(linkTo(methodOn(Controller.class).getBugVenomous()).withSelfRel());
+        if(bugResponse.getStatus() == "OK") {
+            for (Bug bug : bugResponse.getBugs()) {
+                bug.add(linkTo(methodOn(Controller.class).getBugs()).withSelfRel());
                 bug.add(linkTo(methodOn(Controller.class).getBugId(bug.getBugId())).withRel("rel"));
             }
-
-            return new ResponseEntity<>(Objects.requireNonNullElseGet(objects, List::of), HttpStatus.OK);
+            return new ResponseEntity<>(bugResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
@@ -150,6 +147,16 @@ public class Controller {
             return new ResponseEntity<>(bugResponseStatus, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(bugResponseStatus, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(value = "/api/bugs/{bugId}/picture")
+    public ResponseEntity<String> getPicture(
+            @PathVariable int bugId
+    ) {
+        String wikiHandle = databaseManager.getBugById(bugId).getBugs().get(0).getWikiHandle();
+        String thumbnail = "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=" + wikiHandle;
+
+        return new ResponseEntity<>(thumbnail, HttpStatus.OK);
     }
 
 }

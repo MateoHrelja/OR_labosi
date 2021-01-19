@@ -1,9 +1,6 @@
 package hr.fer.OR.database;
 
-import hr.fer.OR.data.AddBugRequestBody;
-import hr.fer.OR.data.Bug;
-import hr.fer.OR.data.BugResponseStatus;
-import hr.fer.OR.data.Subspecies;
+import hr.fer.OR.data.*;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -24,18 +21,18 @@ public interface DatabaseManager {
     List<Subspecies> getSubspecies (int bugId);
 
     @Nullable
-    List<Bug> getAllBugs();
+    BugResponse getAllBugs();
 
     @Nullable
-    List<Bug> getBugById(int bugId);
+    BugResponse getBugById(int bugId);
 
     @Nullable
-    List<Bug> getBugByFamily(@NonNull String family);
+    BugResponse getBugByFamily(@NonNull String family);
 
     @Nullable
-    List<Bug> getBugByVenomous();
+    BugResponse getBugByVenomous();
 
     @Nullable
-    List<Bug> getBugByActiveAtNight();
+    BugResponse getBugByActiveAtNight();
 
 }

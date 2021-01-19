@@ -13,11 +13,17 @@ repositories {
 }
 
 dependencies {
+
+	implementation 'org.fastily:jwiki:1.8.0'
+	implementation 'com.io-informatics.oss:jackson-jsonld:0.1.1'
+
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'de.escalon.hypermedia:hydra-jsonld:0.4.2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile 'com.jayway.jsonpath:json-path'
 }
 
 test {

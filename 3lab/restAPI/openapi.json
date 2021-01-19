@@ -135,7 +135,7 @@
       }
     },
     "/api/bugs/delete/{bugsId}": {
-      "get": {
+      "delete": {
         "summary": "Deletes a resource from the collection with ID",
         "description": "Removes an entry in the database based on ID",
         "produces": [
@@ -165,7 +165,7 @@
       }
     },
     "/api/bugs/update/{bugsId}": {
-      "get": {
+      "update": {
         "summary": "Change a collection resource based on ID and lifespan parameter",
         "description": "Updates an entry in the database based on ID",
         "produces": [
@@ -203,7 +203,7 @@
       }
     },
     "/api/bugs/add": {
-      "get": {
+      "post": {
         "summary": "Adds a resource to the collection",
         "description": "Adds an entry to the database",
         "produces": [

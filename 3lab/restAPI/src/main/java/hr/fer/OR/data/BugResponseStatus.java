@@ -6,12 +6,12 @@ import org.springframework.lang.NonNull;
 public class BugResponseStatus extends RepresentationModel<Bug> {
 
     @NonNull
-    private final String message;
+    public String message;
 
-    public BugResponseStatus(String message) {this.message = message;}
+    public BugResponseStatus(String message) { this.message = message; }
 
-    @NonNull
     public String getMessage() {
-        return message;
+        return this.message;
     }
+
 }
