@@ -1,9 +1,6 @@
 package hr.fer.OR.database;
 
-import hr.fer.OR.data.AddBugRequestBody;
-import hr.fer.OR.data.Bug;
-import hr.fer.OR.data.BugResponseStatus;
-import hr.fer.OR.data.Subspecies;
+import hr.fer.OR.data.*;
 import org.springframework.lang.NonNull;
 
 import java.sql.Connection;
@@ -38,17 +35,20 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 + addBugRequestBody.getParasite() + "', "
                 + addBugRequestBody.getActiveAtNight() + "', "
                 + addBugRequestBody.getLifespan() + "); ";
-        for (String name : addBugRequestBody.getSubspeciesNames()) {
-            query += "INSERT INTO podvrste_final VALUES ('"
-                    + name + "', "
-                    + "(SELECT MAX(bug_id) FROM kukci_final));";
-        }
-        query += "COMMIT TRANSACTION;";
-        try (Statement stmt = databaseConnection.createStatement()) {
-            stmt.executeUpdate(query);
-            return new BugResponseStatus("Success");
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+        if (addBugRequestBody.getName() != null) {
+            for (String name : addBugRequestBody.getSubspeciesNames()) {
+                query += "INSERT INTO podvrste_final VALUES ('"
+                        + name + "', "
+                        + "(SELECT MAX(bug_id) FROM kukci_final));";
+            }
+            query += "COMMIT TRANSACTION;";
+            try (Statement stmt = databaseConnection.createStatement()) {
+                stmt.executeUpdate(query);
+                return new BugResponseStatus("Success");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return new BugResponseStatus("Failure");
     }
@@ -106,8 +106,8 @@ public class DatabaseManagerImpl implements DatabaseManager {
     }
 
     @Override
-    public List<Bug> getAllBugs() {
-        List<Bug> bugs = new ArrayList<>();
+    public BugResponse getAllBugs() {
+        BugResponse bugResponse = new BugResponse("https://schema.org", "Good", "OK", new ArrayList<>());
         String query = "SELECT * FROM kukci_final;";
 
         try (
@@ -129,17 +129,18 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 String parasite = rs.getString("parasite");
                 String activeAtNight = rs.getString("activeatnight");
                 String lifespan = rs.getString("lifespan_m");
-                bugs.add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id)));
+                String slika = "localhost:8080/api/bugs/" + id + "/picture";
+                bugResponse.getBugs().add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id), slika));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bugs;
+        return bugResponse;
     }
 
     @Override
-    public List<Bug> getBugById(int bugId) {
-        List<Bug> bugs = new ArrayList<>();
+    public BugResponse getBugById(int bugId) {
+        BugResponse bugResponse = new BugResponse("https://schema.org", "Good", "OK", new ArrayList<>());
         String query = "SELECT * FROM kukci_final WHERE bug_id = " + bugId + ";";
 
         try (
@@ -161,17 +162,18 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 String parasite = rs.getString("parasite");
                 String activeAtNight = rs.getString("activeatnight");
                 String lifespan = rs.getString("lifespan_m");
-                bugs.add(new Bug(bugId, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(bugId)));
+                String slika = "localhost:8080/api/bugs/" + bugId + "/picture";
+                bugResponse.getBugs().add(new Bug(bugId, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(bugId), slika));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bugs;
+        return bugResponse;
     }
 
     @Override
-    public List<Bug> getBugByFamily(@NonNull String family) {
-        List<Bug> bugs = new ArrayList<>();
+    public BugResponse getBugByFamily(@NonNull String family) {
+        BugResponse bugResponse = new BugResponse("https://schema.org", "Good", "OK", new ArrayList<>());
         String query = "SELECT * FROM kukci_final WHERE family = '" + family + "';";
 
         try (
@@ -193,17 +195,18 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 String parasite = rs.getString("parasite");
                 String activeAtNight = rs.getString("activeatnight");
                 String lifespan = rs.getString("lifespan_m");
-                bugs.add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id)));
+                String slika = "localhost:8080/api/bugs/" + id + "/picture";
+                bugResponse.getBugs().add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id), slika));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bugs;
+        return bugResponse;
     }
 
     @Override
-    public List<Bug> getBugByVenomous() {
-        List<Bug> bugs = new ArrayList<>();
+    public BugResponse getBugByVenomous() {
+        BugResponse bugResponse = new BugResponse("https://schema.org", "Good", "OK", new ArrayList<>());
         String query = "SELECT * FROM kukci_final WHERE venomous = 'Da';";
 
         try (
@@ -225,17 +228,18 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 String parasite = rs.getString("parasite");
                 String activeAtNight = rs.getString("activeatnight");
                 String lifespan = rs.getString("lifespan_m");
-                bugs.add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id)));
+                String slika = "localhost:8080/api/bugs/" + id + "/picture";
+                bugResponse.getBugs().add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id), slika));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bugs;
+        return bugResponse;
     }
 
     @Override
-    public List<Bug> getBugByActiveAtNight() {
-        List<Bug> bugs = new ArrayList<>();
+    public BugResponse getBugByActiveAtNight() {
+        BugResponse bugResponse = new BugResponse("https://schema.org", "Good", "OK", new ArrayList<>());
         String query = "SELECT * FROM kukci_final WHERE activeatnight = 'Da';";
 
         try (
@@ -257,12 +261,13 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 String parasite = rs.getString("parasite");
                 String activeAtNight = rs.getString("activeatnight");
                 String lifespan = rs.getString("lifespan_m");
-                bugs.add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id)));
+                String slika = "localhost:8080/api/bugs/" + id + "/picture";
+                bugResponse.getBugs().add(new Bug(id, name, wikiHandle, family, kingdom, venomous, usefulness, size_mm, parasite, activeAtNight, lifespan, getSubspecies(id), slika));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bugs;
+        return bugResponse;
     }
 
 }

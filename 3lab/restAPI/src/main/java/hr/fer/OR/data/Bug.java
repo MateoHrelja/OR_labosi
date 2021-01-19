@@ -1,5 +1,10 @@
 package hr.fer.OR.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import de.escalon.hypermedia.hydra.mapping.ContextProvider;
+import de.escalon.hypermedia.hydra.mapping.Expose;
+import de.escalon.hypermedia.hydra.mapping.Vocab;
+import ioinformarics.oss.jackson.module.jsonld.annotation.*;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.lang.NonNull;
@@ -7,15 +12,22 @@ import org.springframework.lang.NonNull;
 import java.util.List;
 import java.util.Objects;
 
+@Vocab("http://example.com/vocab/")
+@Expose("person")
 public class Bug extends RepresentationModel<Bug> {
 
+    @JsonldId
     private final int bugId;
 
     @NonNull
+    @JsonldProperty("s:name")
     private final String name;
 
     @NonNull
     private final String wikiHandle;
+
+    @NonNull
+    private final String slika;
 
     @NonNull
     private final String kingdom;
@@ -56,7 +68,8 @@ public class Bug extends RepresentationModel<Bug> {
         @NonNull String parasite,
         @NonNull String activeAtNight,
         @NonNull String lifespan,
-        @NonNull List<Subspecies> subspecies
+        @NonNull List<Subspecies> subspecies,
+        @NonNull String slika
     ) {
         this.bugId = bugId;
         this.name = name;
@@ -69,14 +82,16 @@ public class Bug extends RepresentationModel<Bug> {
         this.parasite = parasite;
         this.activeAtNight = activeAtNight;
         this.lifespan = lifespan;
+        this.slika = slika;
         this.subspecies = subspecies;
     }
 
+    @JsonProperty("@id")
     public int getBugId() {
         return bugId;
     }
 
-    @NonNull
+    @Expose("fullName")
     public String getName() {
         return name;
     }
@@ -85,6 +100,8 @@ public class Bug extends RepresentationModel<Bug> {
     public String getWikiHandle() {
         return wikiHandle;
     }
+
+    public String getSlika() { return slika; }
 
     @NonNull
     public String getKingdom() {

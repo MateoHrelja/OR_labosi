@@ -1,5 +1,12 @@
 package hr.fer.OR;
 
+import com.fasterxml.jackson.databind.BeanDescription;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
+import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
+import com.google.gson.JsonSerializer;
+import de.escalon.hypermedia.hydra.serialize.JacksonHydraSerializer;
 import hr.fer.OR.database.DatabaseManager;
 import hr.fer.OR.database.DatabaseManagerImpl;
 import org.springframework.context.annotation.Bean;
