@@ -12,7 +12,7 @@ public interface DatabaseManager {
     BugResponseStatus addNewBug(@NonNull AddBugRequestBody addBugRequestBody);
 
     @Nullable
-    BugResponseStatus changeBugLifespan(int bugId, @NonNull String newLifespan);
+    BugResponseStatus editExistingBug(int bugId, EditBugRequestBody editBugRequestBody);
 
     @Nullable
     BugResponseStatus removeBug(int bugId);

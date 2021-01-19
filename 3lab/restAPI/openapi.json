@@ -303,6 +303,36 @@
           }
         }
       }
+    },
+    "/api/bugs/{bugId}/picture": {
+      "get": {
+        "summary": "Get an image of the bug using wikiMedia",
+        "description": "Returns an image file of the bug with the given bugId using wikiMedia",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch successful",
+            "schema": {
+              "$ref": "/definitions/Resource"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
     }
   }
 }

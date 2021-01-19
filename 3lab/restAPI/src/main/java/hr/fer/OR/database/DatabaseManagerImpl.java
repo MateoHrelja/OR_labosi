@@ -54,10 +54,12 @@ public class DatabaseManagerImpl implements DatabaseManager {
     }
 
     @Override
-    public BugResponseStatus changeBugLifespan(int bugId, @NonNull String newBugLifespan) {
+    public BugResponseStatus editExistingBug(int bugId, @NonNull EditBugRequestBody editBugRequestBody) {
         String query = "BEGIN TRANSACTION;\n"
-                + "UPDATE kukci_final SET lifespan_m = '"
-                + newBugLifespan + "'"
+                + "UPDATE kukci_final SET name = '"
+                + editBugRequestBody.getName() + "', "
+                + "SET name = '"
+                + editBugRequestBody.getName() + "'"
                 + "WHERE bug_id = " + bugId + ";"
                 + "COMMIT TRANSACTION;";
         try (Statement stmt = databaseConnection.createStatement()) {
